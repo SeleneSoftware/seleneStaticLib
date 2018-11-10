@@ -1,13 +1,19 @@
 {
     "require": {
         "twig/twig": "^2.4",
-        "symfony/flex": "^1.1",
         "erusev/parsedown": "^1.7",
-        "aptoma/twig-markdown": "^3.0"
+        "aptoma/twig-markdown": "^3.0",
+        "symfony/yaml": "^4.1"
     },
-    "scripts": {
-        "auto-scripts": {
-
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
         }
     }
+
 }

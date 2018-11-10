@@ -26,6 +26,9 @@ class Application
 
         $this->config = Yaml::parseFile(__DIR__ . '/../config/config.yml');
         $this->global = Yaml::parseFile(__DIR__ . '/../config/global.yml');
+        foreach ($this->global['global'] as $key => $value) {
+            $this->twig->addGlobal($key, $value);
+        }
     }
 
     public function run()
@@ -38,7 +41,8 @@ class Application
                 $info = pathinfo($p);
                 if ($info['extension'] === 'twig') {
                     $template = $this->twig->load('pages/' . $page);
-                    $vars = []; //Just pulling the global variables for the index page.
+
+                    $vars = $this->global['index'];
                     if ($info['filename'] === 'index.html') {
                         $dirname = dirname(__DIR__ . '/../web/' . $info['filename']);
                         if (!is_dir($dirname))

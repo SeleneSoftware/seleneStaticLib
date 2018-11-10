@@ -1,0 +1,23 @@
+{
+    "erusev/parsedown": {
+        "version": "1.7.1"
+    },
+    "symfony/flex": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "e5c4877367a8528f164fe900753da0369fee3aaa"
+        }
+    },
+    "symfony/polyfill-ctype": {
+        "version": "v1.10.0"
+    },
+    "symfony/polyfill-mbstring": {
+        "version": "v1.10.0"
+    },
+    "twig/twig": {
+        "version": "v2.5.0"
+    }
+}

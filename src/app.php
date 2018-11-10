@@ -1,12 +1,19 @@
 #!/usr/bin/env php
 <?php
-
 require __DIR__.'/../vendor/autoload.php';
+
+use Aptoma\Twig\Extension\MarkdownExtension;
+use Aptoma\Twig\Extension\MarkdownEngine;
+
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../templates');
 $twig =new Twig_Environment($loader, [
     // 'cache' => $path . '/var/cache',
 ]);
+
+$engine = new MarkdownEngine\ParsedownEngine();
+
+$twig->addExtension(new MarkdownExtension($engine));
 
 $pages = scandir(__DIR__ . '/../templates/pages');
 foreach ($pages as $page) {

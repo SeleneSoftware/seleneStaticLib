@@ -1,4 +1,7 @@
 {
+    "aptoma/twig-markdown": {
+        "version": "3.0.0"
+    },
     "erusev/parsedown": {
         "version": "1.7.1"
     },

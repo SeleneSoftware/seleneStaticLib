@@ -1,43 +1,25 @@
 #!/usr/bin/env php
 <?php
+
+/**
+     Copyright 2017 Selene Software - selenesoftware.us
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 use App\Application;
 
 $app = new Application;
 $app->run();
-
-
-// $engine = new MarkdownEngine\ParsedownEngine();
-//
-// $twig->addExtension(new MarkdownExtension($engine));
-
-// $pages = scandir(__DIR__ . '/../templates/pages');
-// foreach ($pages as $page) {
-//     $p = __DIR__ . '/../templates/pages/' . $page;
-//     if (is_file($p)) {
-//         $info = pathinfo($p);
-//         if ($info['extension'] === 'twig') {
-//             $template = $twig->load('pages/' . $page);
-//             if ($info['filename'] === 'index.html') {
-//                 // var_dump(__DIR__ . '/../web/' . $info['filename']);die();
-//                 $dirname = dirname(__DIR__ . '/../web/' . $info['filename']);
-//                 if (!is_dir($dirname))
-//                 {
-//                     mkdir($dirname, 0755, true);
-//                 }
-//
-//                 $f = fopen(__DIR__ . '/../web/' . $info['filename'], 'w');
-//             } else {
-//                 $dirname = dirname(__DIR__ . '/../web/' . substr($info['filename'], 0, -5). '/' . 'index.html');
-//                 if (!is_dir($dirname))
-//                 {
-//                     mkdir($dirname, 0755, true);
-//                 }
-//                 $f = fopen(__DIR__ . '/../web/' . substr($info['filename'], 0, -5). '/' . 'index.html', 'w');
-//             }
-//             fwrite($f, $template->render([]));
-//             fclose($f);
-//         }
-//     }
-// }

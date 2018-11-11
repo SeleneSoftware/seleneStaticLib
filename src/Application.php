@@ -31,6 +31,11 @@ class Application
         }
     }
 
+    public function getTwig()
+    {
+        return $this->twig;
+    }
+
     public function run()
     {
 

@@ -55,6 +55,7 @@ class Application
                         if (file_exists(__DIR__ . '/../content/index.md')) {
                             $vars['pagecontent'] = file_get_contents(__DIR__ . '/../content/index.md');
                         }
+                        $vars['pagename'] = 'index';
                     } else {
                         $pageName = substr($info['filename'], 0, -5);
                         $dirname = dirname(__DIR__ . '/../web/' . $pageName. '/' . 'index.html');
@@ -71,6 +72,7 @@ class Application
                         if (file_exists(__DIR__ . '/../content/'.$pageName.'.md')) {
                             $vars['pagecontent'] = file_get_contents(__DIR__ . '/../content/'.$pageName.'.md');
                         }
+                        $vars['pagename'] = $pageName;
                     }
                     fwrite($f, $template->render($vars));
                     fclose($f);

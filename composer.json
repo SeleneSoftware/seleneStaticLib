@@ -1,5 +1,5 @@
 {
-    "name": "selene/staticsite",
+    "name": "selenesoftware/staticsite",
     "require": {
         "twig/twig": "^2.4",
         "erusev/parsedown": "^1.7",

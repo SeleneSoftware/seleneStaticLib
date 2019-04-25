@@ -8,12 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Selene\\Static\\": "src/"
+            "Selene\\StaticSite\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Selene\\Static\\Tests\\": "tests/"
+            "Selene\\StaticSite\\Tests\\": "tests/"
         }
     }
 

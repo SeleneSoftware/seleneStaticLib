@@ -1,6 +1,6 @@
 <?php
 
-namespace Selene\Static;
+namespace Selene\StaticSite;
 
 use Aptoma\Twig\Extension\MarkdownEngine\ParsedownEngine;
 use Aptoma\Twig\Extension\MarkdownExtension;

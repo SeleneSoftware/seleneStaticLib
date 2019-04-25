@@ -16,7 +16,7 @@ class Application
 
     public function __construct()
     {
-        $this->dir = getced();
+        $this->dir = getcwd();
         $this->loader = new \Twig_Loader_Filesystem($this->dir . '/templates');
         $this->twig =new \Twig_Environment($this->loader, [
             // 'cache' => __DIR__ . '/../cache',

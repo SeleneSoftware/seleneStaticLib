@@ -6,7 +6,6 @@ use Aptoma\Twig\Extension\MarkdownEngine\ParsedownEngine;
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Extension\ExtensionInterface;
-use Selene\StaticSite;
 
 class Application
 {
@@ -54,12 +53,11 @@ class Application
     public function run()
     {
         foreach ($this->plugin as $plugin) {
-            $plugin->start()
+            $plugin->start();
         }
 
         $pages = scandir($this->dir.'/templates/pages');
         foreach ($pages as $page) {
-
             foreach ($this->plugin as $plugin) {
                 $plugin->pageRun($page);
             }
@@ -101,20 +99,19 @@ class Application
                         $vars['pagename'] = $pageName;
                     }
 
-
                     foreach ($this->plugin as $plugin) {
-                        if(!isset($render)) {
+                        if (!isset($render)) {
                             $render = $plugin->render($vars['pageName'], pageRun($template->render($vars)));
                         } else {
-                            $render =  $plugin->render($vars['pageName'], $render);
+                            $render = $plugin->render($vars['pageName'], $render);
                         }
                     }
 
-                        if(!isset($render)) {
-                            fwrite($f, $template->render($vars));
-                        } else {
-                            fwrite($f, template->render($vars));
-                        }
+                    if (!isset($render)) {
+                        fwrite($f, $template->render($vars));
+                    } else {
+                        fwrite($f, $render);
+                    }
                     fclose($f);
                 }
             }

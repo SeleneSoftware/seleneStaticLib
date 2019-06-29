@@ -6,6 +6,7 @@ use Aptoma\Twig\Extension\MarkdownEngine\ParsedownEngine;
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Extension\ExtensionInterface;
+use Selene\StaticSite;
 
 class Application
 {
@@ -18,6 +19,8 @@ class Application
     protected $global;
 
     protected $dir;
+
+    protected $plugin = [];
 
     public function __construct()
     {
@@ -43,10 +46,24 @@ class Application
         $this->twig->addExtension($extension);
     }
 
+    public function addPlugin(PluginInterface $plugin)
+    {
+        $this->plugin[] = $plugin;
+    }
+
     public function run()
     {
+        foreach ($this->plugin as $plugin) {
+            $plugin->start()
+        }
+
         $pages = scandir($this->dir.'/templates/pages');
         foreach ($pages as $page) {
+
+            foreach ($this->plugin as $plugin) {
+                $plugin->pageRun($page);
+            }
+
             $p = $this->dir.'/templates/pages/'.$page;
             if (is_file($p)) {
                 $info = pathinfo($p);
@@ -83,10 +100,28 @@ class Application
                         }
                         $vars['pagename'] = $pageName;
                     }
-                    fwrite($f, $template->render($vars));
+
+
+                    foreach ($this->plugin as $plugin) {
+                        if(!isset($render)) {
+                            $render = $plugin->render($vars['pageName'], pageRun($template->render($vars)));
+                        } else {
+                            $render =  $plugin->render($vars['pageName'], $render);
+                        }
+                    }
+
+                        if(!isset($render)) {
+                            fwrite($f, $template->render($vars));
+                        } else {
+                            fwrite($f, template->render($vars));
+                        }
                     fclose($f);
                 }
             }
+        }
+
+        foreach ($this->plugin as $plugin) {
+            $plugin->end();
         }
     }
 }

@@ -59,7 +59,7 @@ class Application
         $pages = scandir($this->dir.'/templates/pages');
         foreach ($pages as $page) {
             foreach ($this->plugin as $plugin) {
-                $plugin->pageRun($page);
+                $plugin->start();
             }
 
             $p = $this->dir.'/templates/pages/'.$page;
@@ -101,7 +101,7 @@ class Application
 
                     foreach ($this->plugin as $plugin) {
                         if (!isset($render)) {
-                            $render = $plugin->render($vars['pageName'], pageRun($template->render($vars)));
+                            $render = $plugin->render($vars['pageName'], $template->render($vars));
                         } else {
                             $render = $plugin->render($vars['pageName'], $render);
                         }

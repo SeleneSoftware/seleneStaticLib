@@ -58,9 +58,6 @@ class Application
 
         $pages = scandir($this->dir.'/templates/pages');
         foreach ($pages as $page) {
-            foreach ($this->plugin as $plugin) {
-                $plugin->start();
-            }
 
             $p = $this->dir.'/templates/pages/'.$page;
             if (is_file($p)) {

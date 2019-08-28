@@ -101,9 +101,9 @@ class Application
 
                     foreach ($this->plugin as $plugin) {
                         if (!isset($render)) {
-                            $render = $plugin->render($vars['pageName'], $template->render($vars));
+                            $render = $plugin->render($vars['pagename'], $template->render($vars));
                         } else {
-                            $render = $plugin->render($vars['pageName'], $render);
+                            $render = $plugin->render($vars['pagename'], $render);
                         }
                     }
 
@@ -112,6 +112,7 @@ class Application
                     } else {
                         fwrite($f, $render);
                     }
+                    unset($render);
                     fclose($f);
                 }
             }
